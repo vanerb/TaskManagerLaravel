@@ -57,8 +57,8 @@
 
 
     <div class="container bg-dark">
-      <table class="table table-dark">
-        <thead>
+      <table class="table table-dark table-hover">
+        <thead >
           <tr>
             <th class="text-center" scope="col">Tareas pendientes</th>
          
@@ -76,15 +76,43 @@
                 
               </a></td>
             <td>
-              <form action="{{ route('tasks-destroy', [$task->id]) }}" method="POST">
-              @method('DELETE')
-              @csrf
-              <button class="btn btn-danger"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
-              </form></td>
+
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletetask">
+                <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+              </button>
+             </td>
           </tr>
          @endforeach
         </tbody>
       </table>
+      
+
+<!-- Modal -->
+<div class="modal fade" id="deletetask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Está seguro de que quiere eliminar este elemento?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="{{ route('tasks-destroy', [$task->id]) }}" method="POST">
+          @method('DELETE')
+          @csrf
+          <button class="btn btn-danger">Eliminar</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
     </div>
 
     @else

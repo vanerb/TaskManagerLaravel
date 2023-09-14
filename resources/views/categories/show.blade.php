@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="container w-25 border p-4 my-4">
+<div class="container w-25 p-4 my-4">
     <div class="row mx-auto">
         <form method="POST" action="{{ route('categories.update', ['category' => $category->id]) }}">
             @method('PATCH')
@@ -37,25 +37,33 @@
     </div>
     <div >
         @if ($category->tasks->count() > 0)
+
+        <table class="mt-5 table table-dark table-hover">
             @foreach ($category->tasks as $task )
-                <div class="row py-1">
-                    <div class="col-md-9 d-flex align-items-center">
-                        <a href="{{ route('tasks-edit', ['id' => $task->id]) }}">{{ $task->title }}</a>
-                    </div>
-    
-                    <div class="col-md-3 d-flex justify-content-end">
-                        <form action="{{ route('tasks-destroy', [$task->id]) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
-                    </div>
-                </div>
+            <thead>
+              <tr>
+                
+                <th scope="col">Tareas</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ $task->title }}</td>
+                <td> <a href="{{ route('tasks-edit', ['id' => $task->id]) }}"><button class="btn btn-info"><i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i></button></a></td>
+                <td> <form action="{{ route('tasks-destroy', [$task->id]) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <button class="btn btn-danger"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button>
+                </form></td>
+              </tr>
+              
+            </tbody>
             @endforeach    
-        @else
-            No hay tareas para esta categoría
-        @endif
-        
+            @else
+                No hay tareas para esta categoría
+            @endif
+          </table>
         </div>
    
 
