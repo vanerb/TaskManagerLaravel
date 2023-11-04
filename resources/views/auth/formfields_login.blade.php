@@ -15,7 +15,7 @@
 
     <div class="form-group mb-3">
         <label class="col-md-12" for="password">
-            <span >Contraseña</span>
+            <span>Contraseña</span>
             <input class="form-control" type="password" type="text" name="password" id="password" >
             <br>
             @error('password')

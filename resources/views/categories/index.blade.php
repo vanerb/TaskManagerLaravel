@@ -24,7 +24,14 @@
         <tbody>
           @foreach ($categories as $category)
           <tr>
-            <td>{{ $category->name }}</td>
+            <td>
+              <div style="display: flex; align-items: center;">
+                <div style="background-color: {{ $category->color }}; width: 10px; height: 10px; border-radius: 50%; margin-right:5px; "></div>
+              {{ $category->name }}
+              </div>
+              
+            </td>
+            
             <td><a href="{{ route('categories.show', ['category' => $category->id]) }}"><button class="btn btn-info"><i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i></button></a></td>
             <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal{{$category->id}}"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button></td>
           </tr>
@@ -70,7 +77,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crear nueva categoria</h5>
+            <h5 class="modal-title text-dark" id="exampleModalLabel">Crear nueva categoria</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <form action="{{ route('categories.store') }}" method="POST">
@@ -91,12 +98,12 @@
               @enderror
     
                 <div class="form-group mb-3">
-                  <label for="name">Nombre</label>
+                  <label class="text-dark" for="name">Nombre</label>
                   <input type="text" name="name" class="form-control" placeholder="Nombre">
                 </div>
   
                 <div class="form-group mb-3">
-                  <label for="color">Color categoria</label>
+                  <label class="text-dark" for="color">Color categoria</label>
                   <input type="color" name="color" class="form-control">
                 </div>
           </div>

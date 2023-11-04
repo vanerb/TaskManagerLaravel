@@ -16,9 +16,9 @@
         @include('auth.formfields_login')
        
         <div>
-            <a  href="{{ route('register') }}">Registrarse</a>
     
             <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+            <p class="mt-2"> ¿No tienes aún una cuenta? <a href="{{ route('register') }}"> ¡Registrarse!</a></p>
     </form>
    </div>
 </div>
